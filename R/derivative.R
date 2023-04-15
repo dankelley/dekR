@@ -1,15 +1,16 @@
 #' Numerical derivative, using centred differences for interior points
 #'
-#' If the lengths of x and y exceed 2, then `derivative()` computes centred
-#' derivatives for interior points, and first differences at the endpoints.
-#' If the lengths equal 2, then `derivative()` computes the first difference
-#' and repeats the value. Otherwise, an error is reported.
+#' This computes the numerical derivative of y=y(x), using 
+#' centred derivatives for interior points, and first differences for
+#' the endpoints.  (If there are only 2 points, then first differences
+#' are used, then repeated so the result has the same length as `x`.)
+#' If `y` is not provided, then the derivative of `x` with respect to
+#' index is computed.
 #'
-#' @param x a numerical vector holding the independent coordinate. An error is
-#' reported if `x` holds under 3 points.
+#' @param x a numerical vector.
 #'
-#' @param y a numerical vector of the same length as `x`, holding the dependent
-#' coordinate, y=y(x).
+#' @param y optional numerical vector of the same length as `x`. See
+#' \sQuote{Details} for behaviour if `y` is not given.
 #'
 #' @examples
 #'
@@ -30,8 +31,15 @@
 derivative <- function(x, y)
 {
     n <- length(x)
-    if (length(y) != n)
-        stop("x and y must have equal length, but the lengths are ", n, " and ", length(y))
+    if (n < 1L)
+        stop("Must provide x")
+    if (missing(y)) {
+        y <- x
+        x <- seq_len(n)
+    } else {
+        if (length(y) != n)
+            stop("x and y must have equal length, but the lengths are ", n, " and ", length(y))
+    }
     if (n > 2) {
         c((y[2L]-y[1L]) / (x[2L]-x[1L]),
             diff(y, lag=2L) / diff(x, lag=2L),

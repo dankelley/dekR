@@ -7,20 +7,21 @@
 derivative(x, y)
 }
 \arguments{
-\item{x}{a numerical vector holding the independent coordinate. An error is
-reported if \code{x} holds under 3 points.}
+\item{x}{a numerical vector.}
 
-\item{y}{a numerical vector of the same length as \code{x}, holding the dependent
-coordinate, y=y(x).}
+\item{y}{optional numerical vector of the same length as \code{x}. See
+\sQuote{Details} for behaviour if \code{y} is not given.}
 }
 \value{
 derivative dy/dx
 }
 \description{
-If the lengths of x and y exceed 2, then \code{derivative()} computes centred
-derivatives for interior points, and first differences at the endpoints.
-If the lengths equal 2, then \code{derivative()} computes the first difference
-and repeats the value. Otherwise, an error is reported.
+This computes the numerical derivative of y=y(x), using
+centred derivatives for interior points, and first differences for
+the endpoints.  (If there are only 2 points, then first differences
+are used, then repeated so the result has the same length as \code{x}.)
+If \code{y} is not provided, then the derivative of \code{x} with respect to
+index is computed.
 }
 \examples{
 
