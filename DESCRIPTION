@@ -1,0 +1,12 @@
+Package: dankelley
+Type: Package
+Title: Code used by Dan Kelley
+Version: 0.1.0
+Authors@R: c(
+    person(given="Dan", family="Kelley", email="Dan.Kelley@Dal.Ca", role=c("aut", "cre"), comment=c(ORCID="https://orcid.org/0000-0001-7808-5911")))
+Maintainer: Dan Kelley <kelley.dan@gmail.com>
+Description: This is a collection of functions used by Dan Kelley.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
